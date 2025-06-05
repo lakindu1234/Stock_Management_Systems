@@ -54,4 +54,12 @@ class InventorySystem:
         c.execute("SELECT id, name, price, stock FROM items")
         return c.fetchall()
 
-
+    @staticmethod
+    def add_item(name, price, stock):
+        try:
+            c.execute("INSERT INTO items (name, price, stock) VALUES (?,?,?)",
+                     (name, price, stock))
+            conn.commit()
+            return True
+        except sqlite3.IntegrityError:
+            return False

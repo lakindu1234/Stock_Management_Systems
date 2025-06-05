@@ -45,3 +45,13 @@ c.execute('''CREATE TABLE IF NOT EXISTS daily_sales (
 conn.commit()
 
 
+class InventorySystem:
+    def __init__(self):
+        self.current_transaction = {}
+
+    @staticmethod
+    def get_items():
+        c.execute("SELECT id, name, price, stock FROM items")
+        return c.fetchall()
+
+

@@ -63,3 +63,10 @@ class InventorySystem:
             return True
         except sqlite3.IntegrityError:
             return False
+
+    @staticmethod
+    def update_stock(item_id, adjustment):
+        c.execute("UPDATE items SET stock = stock + ? WHERE id = ?", (adjustment, item_id))
+        c.execute("INSERT INTO stock_history (item_id, adjustment, timestamp) VALUES (?,?,?)",
+                 (item_id, adjustment, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        conn.commit()

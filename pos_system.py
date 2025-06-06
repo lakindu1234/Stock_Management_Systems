@@ -46,6 +46,7 @@ conn.commit()
 
 
 class InventorySystem:
+
     def __init__(self):
         self.current_transaction = {}
 
@@ -82,3 +83,18 @@ class InventorySystem:
         except sqlite3.Error as e:
             print(f"Error removing item: {e}")
             return False
+
+    @staticmethod
+    def process_transaction(items, total):
+        try:
+            today = datetime.now().date().isoformat()
+
+            # Validate stock first
+            for item_name, qty in items.items():
+                c.execute("SELECT id, stock FROM items WHERE name=?", (item_name,))
+                result = c.fetchone()
+                if not result:
+                    raise ValueError(f"Item {item_name} not found")
+                item_id, current_stock = result
+                if current_stock < qty:
+                    raise ValueError(f"Insufficient stock for {item_name}")

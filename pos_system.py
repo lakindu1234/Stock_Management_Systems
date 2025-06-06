@@ -70,3 +70,15 @@ class InventorySystem:
         c.execute("INSERT INTO stock_history (item_id, adjustment, timestamp) VALUES (?,?,?)",
                  (item_id, adjustment, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
         conn.commit()
+
+
+    @staticmethod
+    def remove_item(item_id):
+        try:
+            c.execute("DELETE FROM stock_history WHERE item_id = ?", (item_id,))
+            c.execute("DELETE FROM items WHERE id = ?", (item_id,))
+            conn.commit()
+            return True
+        except sqlite3.Error as e:
+            print(f"Error removing item: {e}")
+            return False

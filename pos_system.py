@@ -98,3 +98,13 @@ class InventorySystem:
                 item_id, current_stock = result
                 if current_stock < qty:
                     raise ValueError(f"Insufficient stock for {item_name}")
+
+            # Process stock changes
+            for item_name, qty in items.items():
+
+                c.execute("SELECT id FROM items WHERE name=?", (item_name,))
+                item_id = c.fetchone()[0]
+                c.execute("UPDATE items SET stock = stock - ? WHERE id = ?", (qty, item_id))
+                c.execute("INSERT INTO stock_history (item_id, adjustment, timestamp) VALUES (?,?,?)",
+
+                         (item_id, -qty, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))

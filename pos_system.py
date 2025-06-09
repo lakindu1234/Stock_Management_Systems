@@ -108,3 +108,28 @@ class InventorySystem:
                 c.execute("INSERT INTO stock_history (item_id, adjustment, timestamp) VALUES (?,?,?)",
 
                          (item_id, -qty, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+
+
+                        # Get next daily_id
+            c.execute("SELECT MAX(daily_id) FROM transactions WHERE date = ?", (today,))
+            max_daily_id = c.fetchone()[0] or 0
+            new_daily_id = max_daily_id + 1
+
+            # Create transaction record
+            items_str = ", ".join([f"{name}(x{qty})" for name, qty in items.items()])
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+            c.execute('''INSERT INTO transactions
+                       (daily_id, date, items, total, timestamp)
+                       VALUES (?,?,?,?,?)''',
+                     (new_daily_id, today, items_str, total, timestamp))
+
+            # Update daily sales
+            c.execute("INSERT OR IGNORE INTO daily_sales (date, total_income) VALUES (?, 0)", (today,))
+            c.execute("UPDATE daily_sales SET total_income = total_income + ? WHERE date = ?", (total, today))
+
+            conn.commit()
+            return True
+        except Exception as e:
+            conn.rollback()
+            raise e

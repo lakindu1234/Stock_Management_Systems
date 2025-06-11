@@ -133,3 +133,9 @@ class InventorySystem:
         except Exception as e:
             conn.rollback()
             raise e
+
+    @staticmethod
+    def get_item_stock(item_id):
+        c.execute("SELECT stock FROM items WHERE id=?", (item_id,))
+        result = c.fetchone()
+        return result[0] if result else 0

@@ -139,3 +139,32 @@ class InventorySystem:
         c.execute("SELECT stock FROM items WHERE id=?", (item_id,))
         result = c.fetchone()
         return result[0] if result else 0
+
+
+class BillingSystem:
+    
+    def __init__(self, root):
+        self.root = root
+        self.inventory = InventorySystem()
+        self.setup_ui()
+        self.root.protocol("WM_DELETE_WINDOW", self.on_close)
+
+
+    def setup_ui(self):
+        self.root.title("Inventory & Billing System")
+        self.root.geometry("1200x800")
+
+        # Login Frame
+        self.login_frame = ttk.Frame(self.root, padding=20)
+        self.login_frame.pack(pady=50)
+
+        ttk.Label(self.login_frame, text="Username:").grid(row=0, column=0)
+        self.username_entry = ttk.Entry(self.login_frame)
+        self.username_entry.grid(row=0, column=1)
+
+        ttk.Label(self.login_frame, text="Password:").grid(row=1, column=0)
+        self.password_entry = ttk.Entry(self.login_frame, show="*")
+        self.password_entry.grid(row=1, column=1)
+
+        ttk.Button(self.login_frame, text="Login",
+                  command=self.authenticate).grid(row=2, columnspan=2, pady=10)

@@ -142,7 +142,7 @@ class InventorySystem:
 
 
 class BillingSystem:
-    
+
     def __init__(self, root):
         self.root = root
         self.inventory = InventorySystem()
@@ -168,3 +168,10 @@ class BillingSystem:
 
         ttk.Button(self.login_frame, text="Login",
                   command=self.authenticate).grid(row=2, columnspan=2, pady=10)
+
+    def authenticate(self):
+        if self.username_entry.get() == "admin" and self.password_entry.get() == "admin123":
+            self.login_frame.destroy()
+            self.show_main_app()
+        else:
+            messagebox.showerror("Error", "Invalid credentials")

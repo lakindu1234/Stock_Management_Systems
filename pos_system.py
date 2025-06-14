@@ -175,3 +175,32 @@ class BillingSystem:
             self.show_main_app()
         else:
             messagebox.showerror("Error", "Invalid credentials")
+
+
+    def show_main_app(self):
+        main_frame = ttk.Frame(self.root)
+        main_frame.pack(fill=tk.BOTH, expand=True)
+
+        notebook = ttk.Notebook(main_frame)
+
+        # Inventory Tab
+        inv_tab = ttk.Frame(notebook)
+        self.setup_inventory_tab(inv_tab)
+
+        # Billing Tab
+        bill_tab = ttk.Frame(notebook)
+        self.setup_billing_tab(bill_tab)
+
+        # Transactions Tab
+        trans_tab = ttk.Frame(notebook)
+        self.setup_transactions_tab(trans_tab)
+
+        # Daily Sales Tab
+        daily_tab = ttk.Frame(notebook)
+        self.setup_daily_sales_tab(daily_tab)
+
+        notebook.add(inv_tab, text="Inventory Management")
+        notebook.add(bill_tab, text="Billing System")
+        notebook.add(trans_tab, text="Transaction History")
+        notebook.add(daily_tab, text="Daily Sales")
+        notebook.pack(fill=tk.BOTH, expand=True)

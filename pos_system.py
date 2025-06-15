@@ -204,3 +204,25 @@ class BillingSystem:
         notebook.add(trans_tab, text="Transaction History")
         notebook.add(daily_tab, text="Daily Sales")
         notebook.pack(fill=tk.BOTH, expand=True)
+
+
+    def setup_inventory_tab(self, parent):
+        control_frame = ttk.Frame(parent)
+        control_frame.pack(pady=10)
+
+        ttk.Button(control_frame, text="Add New Item",
+                  command=self.show_add_item_dialog).pack(side=tk.LEFT, padx=5)
+        ttk.Button(control_frame, text="Update Stock",
+                  command=self.show_update_stock_dialog).pack(side=tk.LEFT, padx=5)
+        ttk.Button(control_frame, text="Remove Item",
+                  command=self.show_remove_item_dialog).pack(side=tk.LEFT, padx=5)
+        ttk.Button(control_frame, text="Refresh",
+                  command=self.update_inventory_list).pack(side=tk.LEFT, padx=5)
+
+        columns = ("ID", "Name", "Price", "Stock")
+        self.inventory_tree = ttk.Treeview(parent, columns=columns, show="headings")
+        for col in columns:
+            self.inventory_tree.heading(col, text=col)
+            self.inventory_tree.column(col, width=100)
+        self.inventory_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        self.update_inventory_list()

@@ -226,3 +226,33 @@ class BillingSystem:
             self.inventory_tree.column(col, width=100)
         self.inventory_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         self.update_inventory_list()
+
+
+    def setup_billing_tab(self, parent):
+        bill_frame = ttk.Frame(parent)
+        bill_frame.pack(fill=tk.BOTH, expand=True)
+
+        left_frame = ttk.Frame(bill_frame)
+        left_frame.pack(side=tk.LEFT, fill=tk.Y, padx=10)
+
+        ttk.Label(left_frame, text="Select Item:").pack(pady=5)
+        self.item_combo = ttk.Combobox(left_frame)
+        self.item_combo.pack(pady=5)
+        self.update_item_combo()
+
+        ttk.Label(left_frame, text="Quantity:").pack(pady=5)
+        self.quantity_entry = ttk.Entry(left_frame)
+        self.quantity_entry.pack(pady=5)
+
+        ttk.Button(left_frame, text="Add to Cart",
+                  command=self.add_to_cart).pack(pady=10)
+
+        right_frame = ttk.Frame(bill_frame)
+        right_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
+
+        columns = ("Item", "Price", "Quantity", "Subtotal")
+        self.cart_tree = ttk.Treeview(right_frame, columns=columns, show="headings")
+        for col in columns:
+            self.cart_tree.heading(col, text=col)
+            self.cart_tree.column(col, width=120)
+        self.cart_tree.pack(fill=tk.BOTH, expand=True)

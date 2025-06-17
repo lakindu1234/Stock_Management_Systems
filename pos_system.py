@@ -256,3 +256,19 @@ class BillingSystem:
             self.cart_tree.heading(col, text=col)
             self.cart_tree.column(col, width=120)
         self.cart_tree.pack(fill=tk.BOTH, expand=True)
+
+
+        total_frame = ttk.Frame(right_frame)
+        total_frame.pack(fill=tk.X, pady=10)
+
+        ttk.Label(total_frame, text="Total:", font=('Arial', 12, 'bold')).pack(side=tk.LEFT)
+        self.total_label = ttk.Label(total_frame, text="$0.00", font=('Arial', 12, 'bold'))
+        self.total_label.pack(side=tk.RIGHT, padx=10)
+
+        btn_frame = ttk.Frame(right_frame)
+        btn_frame.pack(pady=10)
+
+        ttk.Button(btn_frame, text="Remove Selected",
+                  command=self.remove_from_cart).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Process Payment",
+                  command=self.process_payment).pack(side=tk.RIGHT, padx=5)

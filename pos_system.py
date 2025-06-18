@@ -272,3 +272,12 @@ class BillingSystem:
                   command=self.remove_from_cart).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_frame, text="Process Payment",
                   command=self.process_payment).pack(side=tk.RIGHT, padx=5)
+
+    def setup_transactions_tab(self, parent):
+        columns = ("Daily ID", "Date", "Items", "Total", "Timestamp")
+        self.trans_tree = ttk.Treeview(parent, columns=columns, show="headings")
+        for col in columns:
+            self.trans_tree.heading(col, text=col)
+            self.trans_tree.column(col, width=150)
+        self.trans_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        self.update_transactions()

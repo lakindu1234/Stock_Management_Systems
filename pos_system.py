@@ -281,3 +281,12 @@ class BillingSystem:
             self.trans_tree.column(col, width=150)
         self.trans_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         self.update_transactions()
+
+    def setup_daily_sales_tab(self, parent):
+        columns = ("Date", "Total Income")
+        self.daily_tree = ttk.Treeview(parent, columns=columns, show="headings")
+        for col in columns:
+            self.daily_tree.heading(col, text=col)
+            self.daily_tree.column(col, width=150)
+        self.daily_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        self.update_daily_sales()

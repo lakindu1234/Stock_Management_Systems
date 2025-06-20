@@ -294,3 +294,9 @@ class BillingSystem:
     def update_item_combo(self):
         items = self.inventory.get_items()
         self.item_combo['values'] = [f"{item[0]} - {item[1]}" for item in items]
+
+    def update_inventory_list(self):
+        for item in self.inventory_tree.get_children():
+            self.inventory_tree.delete(item)
+        for item in self.inventory.get_items():
+            self.inventory_tree.insert("", tk.END, values=item)

@@ -290,3 +290,7 @@ class BillingSystem:
             self.daily_tree.column(col, width=150)
         self.daily_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         self.update_daily_sales()
+
+    def update_item_combo(self):
+        items = self.inventory.get_items()
+        self.item_combo['values'] = [f"{item[0]} - {item[1]}" for item in items]

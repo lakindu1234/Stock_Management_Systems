@@ -300,3 +300,10 @@ class BillingSystem:
             self.inventory_tree.delete(item)
         for item in self.inventory.get_items():
             self.inventory_tree.insert("", tk.END, values=item)
+
+    def update_transactions(self):
+        for item in self.trans_tree.get_children():
+            self.trans_tree.delete(item)
+        c.execute("SELECT daily_id, date, items, total, timestamp FROM transactions ORDER BY timestamp DESC")
+        for trans in c.fetchall():
+            self.trans_tree.insert("", tk.END, values=(trans[0], trans[1], trans[2], f"${trans[3]:.2f}", trans[4]))

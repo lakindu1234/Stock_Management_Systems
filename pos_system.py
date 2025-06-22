@@ -307,3 +307,10 @@ class BillingSystem:
         c.execute("SELECT daily_id, date, items, total, timestamp FROM transactions ORDER BY timestamp DESC")
         for trans in c.fetchall():
             self.trans_tree.insert("", tk.END, values=(trans[0], trans[1], trans[2], f"${trans[3]:.2f}", trans[4]))
+
+    def update_daily_sales(self):
+        for item in self.daily_tree.get_children():
+            self.daily_tree.delete(item)
+        c.execute("SELECT * FROM daily_sales ORDER BY date DESC")
+        for sale in c.fetchall():
+            self.daily_tree.insert("", tk.END, values=(sale[0], f"RS.{sale[1]:.2f}"))

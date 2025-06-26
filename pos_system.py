@@ -314,3 +314,20 @@ class BillingSystem:
         c.execute("SELECT * FROM daily_sales ORDER BY date DESC")
         for sale in c.fetchall():
             self.daily_tree.insert("", tk.END, values=(sale[0], f"RS.{sale[1]:.2f}"))
+
+
+    def show_add_item_dialog(self):
+        dialog = tk.Toplevel(self.root)
+        dialog.title("Add New Item")
+
+        ttk.Label(dialog, text="Item Name:").grid(row=0, column=0, padx=5, pady=5)
+        name_entry = ttk.Entry(dialog)
+        name_entry.grid(row=0, column=1, padx=5, pady=5)
+
+        ttk.Label(dialog, text="Price:").grid(row=1, column=0, padx=5, pady=5)
+        price_entry = ttk.Entry(dialog)
+        price_entry.grid(row=1, column=1, padx=5, pady=5)
+
+        ttk.Label(dialog, text="Initial Stock:").grid(row=2, column=0, padx=5, pady=5)
+        stock_entry = ttk.Entry(dialog)
+        stock_entry.grid(row=2, column=1, padx=5, pady=5)

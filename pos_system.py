@@ -331,3 +331,14 @@ class BillingSystem:
         ttk.Label(dialog, text="Initial Stock:").grid(row=2, column=0, padx=5, pady=5)
         stock_entry = ttk.Entry(dialog)
         stock_entry.grid(row=2, column=1, padx=5, pady=5)
+
+
+        def save_item():
+            try:
+                name = name_entry.get().strip()
+                price = float(price_entry.get())
+                stock = int(stock_entry.get())
+
+                if not name:
+                    messagebox.showerror("Error", "Item name cannot be empty!")
+                    return

@@ -342,3 +342,7 @@ class BillingSystem:
                 if not name:
                     messagebox.showerror("Error", "Item name cannot be empty!")
                     return
+
+                if price <= 0 or stock < 0:
+                    messagebox.showerror("Error", "Price and stock must be positive values!")
+                    return

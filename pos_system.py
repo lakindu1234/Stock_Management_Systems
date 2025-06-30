@@ -346,3 +346,9 @@ class BillingSystem:
                 if price <= 0 or stock < 0:
                     messagebox.showerror("Error", "Price and stock must be positive values!")
                     return
+
+                if self.inventory.add_item(name, price, stock):
+                    self.update_inventory_list()
+                    self.update_item_combo()
+                    dialog.destroy()
+                    messagebox.showinfo("Success", "Item added successfully!")

@@ -352,3 +352,10 @@ class BillingSystem:
                     self.update_item_combo()
                     dialog.destroy()
                     messagebox.showinfo("Success", "Item added successfully!")
+
+                else:
+                    messagebox.showerror("Error", "Item with this name already exists!")
+            except ValueError:
+                messagebox.showerror("Error", "Invalid input values! Please check price and stock.")
+
+        ttk.Button(dialog, text="Save", command=save_item).grid(row=3, columnspan=2, pady=10)

@@ -359,3 +359,8 @@ class BillingSystem:
                 messagebox.showerror("Error", "Invalid input values! Please check price and stock.")
 
         ttk.Button(dialog, text="Save", command=save_item).grid(row=3, columnspan=2, pady=10)
+
+
+    def show_update_stock_dialog(self):
+        dialog = tk.Toplevel(self.root)
+        dialog.title("Update Stock")

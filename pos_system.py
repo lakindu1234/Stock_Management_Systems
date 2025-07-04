@@ -364,3 +364,6 @@ class BillingSystem:
     def show_update_stock_dialog(self):
         dialog = tk.Toplevel(self.root)
         dialog.title("Update Stock")
+        ttk.Label(dialog, text="Select Item:").grid(row=0, column=0, padx=5, pady=5)
+        item_combo = ttk.Combobox(dialog)
+        item_combo.grid(row=0, column=1, padx=5, pady=5)

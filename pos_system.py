@@ -375,3 +375,14 @@ class BillingSystem:
         ttk.Label(dialog, text="Quantity to Add:").grid(row=1, column=0, padx=5, pady=5)
         qty_entry = ttk.Entry(dialog)
         qty_entry.grid(row=1, column=1, padx=5, pady=5)
+
+
+        def update_stock():
+            try:
+                selected = item_combo.get()
+                if not selected:
+                    raise ValueError("No item selected")
+                item_id = int(selected.split(" - ")[0])
+                qty = int(qty_entry.get())
+                if qty <= 0:
+                    raise ValueError("Quantity must be positive")

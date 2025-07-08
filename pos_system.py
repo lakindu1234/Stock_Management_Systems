@@ -386,3 +386,10 @@ class BillingSystem:
                 qty = int(qty_entry.get())
                 if qty <= 0:
                     raise ValueError("Quantity must be positive")
+
+                self.inventory.update_stock(item_id, qty)
+                self.update_inventory_list()
+                dialog.destroy()
+                messagebox.showinfo("Success", "Stock updated successfully!")
+            except ValueError as e:
+                messagebox.showerror("Error", str(e))

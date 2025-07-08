@@ -14,4 +14,5 @@ Enter the password and Use the POS System for logging part.
 2) Add Items according to the Enevironment 
 3) If user want Delete Item 
 4) If user want they can change the number of item 
-5) When billing item it reduce the item number 
+5) When billing number of items reduce auto 
+6) User can change the system according to the environment

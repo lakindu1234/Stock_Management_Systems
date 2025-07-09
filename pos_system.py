@@ -393,3 +393,5 @@ class BillingSystem:
                 messagebox.showinfo("Success", "Stock updated successfully!")
             except ValueError as e:
                 messagebox.showerror("Error", str(e))
+
+        ttk.Button(dialog, text="Update", command=update_stock).grid(row=2, columnspan=2, pady=10)

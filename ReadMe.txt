@@ -16,3 +16,4 @@ Enter the password and Use the POS System for logging part.
 4) If user want they can change the number of item 
 5) When billing number of items reduce auto 
 6) User can change the system according to the environment
+7) If user want they can edit the file according to the environment 

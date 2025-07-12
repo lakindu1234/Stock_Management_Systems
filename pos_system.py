@@ -395,3 +395,10 @@ class BillingSystem:
                 messagebox.showerror("Error", str(e))
 
         ttk.Button(dialog, text="Update", command=update_stock).grid(row=2, columnspan=2, pady=10)
+
+
+    def show_remove_item_dialog(self):
+        dialog = tk.Toplevel(self.root)
+        dialog.title("Remove Item")
+
+        ttk.Label(dialog, text="Select Item to Remove:").grid(row=0, column=0, padx=5, pady=5)

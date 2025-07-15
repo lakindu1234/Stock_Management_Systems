@@ -407,3 +407,11 @@ class BillingSystem:
         item_combo.grid(row=0, column=1, padx=5, pady=5)
         items = self.inventory.get_items()
         item_combo['values'] = [f"{item[0]} - {item[1]}" for item in items]
+
+
+        def remove_item():
+            try:
+                selected = item_combo.get()
+                if not selected:
+                    raise ValueError("No item selected")
+                item_id = int(selected.split(" - ")[0])

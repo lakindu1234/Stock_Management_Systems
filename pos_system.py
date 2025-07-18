@@ -394,7 +394,7 @@ class BillingSystem:
             except ValueError as e:
                 messagebox.showerror("Error", str(e))
 
-        ttk.Button(dialog, text="Update", command=update_stock).grid(row=2, columnspan=2, pady=10)
+        ttk.Bu8tton(dialog, text="Update", command=update_stock).grid(row=2, columnspan=2, pady=10)
 
 
     def show_remove_item_dialog(self):
@@ -415,3 +415,7 @@ class BillingSystem:
                 if not selected:
                     raise ValueError("No item selected")
                 item_id = int(selected.split(" - ")[0])
+
+                if self.inventory.remove_item(item_id):
+                    self.update_inventory_list()
+                    self.update_item_combo()

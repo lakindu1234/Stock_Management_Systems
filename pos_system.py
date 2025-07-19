@@ -420,7 +420,7 @@ class BillingSystem:
                     self.update_inventory_list()
                     self.update_item_combo()
                     dialog.destroy()
-                    
+
                     messagebox.showinfo("Success", "Item removed successfully!")
 
                 else:

@@ -1,4 +1,4 @@
-## POS System 
+##Stock Management Systems
 
 Language Used - Python 
 GUI -  TKINTER Python module 
@@ -6,7 +6,7 @@ GUI -  TKINTER Python module
 ## Username - admin
 ## Password - admin123
 
-Enter the password and Use the POS System for logging part. 
+Enter the password and Use the Stock Management Systems for logging part. 
 
 ## How to Uses the POS 
 

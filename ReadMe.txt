@@ -5,7 +5,11 @@ GUI -  TKINTER Python module
 
 ## Username - admin
 ## Password - admin123
+------------------------------------------------------------------------------------------------
 
+This is a system that was prepared by Python and SQL. This is made for any kind of business to manage their finances and stocks. It will show the stock updates and income daily, and it can be customized according to the user's environment.
+
+------------------------------------------------------------------------------------------------
 Enter the password and Use the Stock Management Systems for logging part. 
 
 ## How to Uses the POS 

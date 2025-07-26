@@ -430,3 +430,9 @@ class BillingSystem:
                 messagebox.showerror("Error", str(e))
 
         ttk.Button(dialog, text="Remove", command=remove_item).grid(row=1, columnspan=2, pady=10)
+
+    def add_to_cart(self):
+        selected = self.item_combo.get()
+        if not selected:
+            messagebox.showerror("Error", "Please select an item")
+            return

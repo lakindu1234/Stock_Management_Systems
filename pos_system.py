@@ -428,3 +428,5 @@ class BillingSystem:
 
             except ValueError as e:
                 messagebox.showerror("Error", str(e))
+
+        ttk.Button(dialog, text="Remove", command=remove_item).grid(row=1, columnspan=2, pady=10)

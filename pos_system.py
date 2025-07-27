@@ -440,4 +440,5 @@ class BillingSystem:
         try:
             item_id = int(selected.split(" - ")[0])
             qty = int(self.quantity_entry.get())
-
+            if qty <= 0:
+                raise ValueError

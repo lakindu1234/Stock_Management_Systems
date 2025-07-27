@@ -1,4 +1,4 @@
-import tkinter as tk
+  import tkinter as tk
 from tkinter import ttk, messagebox
 import sqlite3
 from datetime import datetime
@@ -436,3 +436,8 @@ class BillingSystem:
         if not selected:
             messagebox.showerror("Error", "Please select an item")
             return
+
+        try:
+            item_id = int(selected.split(" - ")[0])
+            qty = int(self.quantity_entry.get())
+

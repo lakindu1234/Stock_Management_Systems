@@ -442,3 +442,7 @@ class BillingSystem:
             qty = int(self.quantity_entry.get())
             if qty <= 0:
                 raise ValueError
+            except ValueError:
+            messagebox.showerror("Error", "Invalid quantity")
+            return
+              

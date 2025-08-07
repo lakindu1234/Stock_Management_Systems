@@ -445,4 +445,10 @@ class BillingSystem:
             except ValueError:
             messagebox.showerror("Error", "Invalid quantity")
             return
+
+        stock = self.inventory.get_item_stock(item_id)
+        if qty > stock:
+            messagebox.showerror("Error", "Insufficient stock")
+            return
+      
               

@@ -453,4 +453,6 @@ class BillingSystem:
         item_name = selected.split(" - ")[1]
         if item_name in self.inventory.current_transaction:
           self.inventory.current_transaction[item_name] += qty
+        else:
+          self.inventory.current_transaction[item_name] = qty
   

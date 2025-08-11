@@ -1,4 +1,4 @@
-  import tkinter as tk
+import tkinter as tk
 from tkinter import ttk, messagebox
 import sqlite3
 from datetime import datetime
@@ -450,5 +450,5 @@ class BillingSystem:
         if qty > stock:
             messagebox.showerror("Error", "Insufficient stock")
             return
-      
-              
+        item_name = selected.split(" - ")[1]
+  

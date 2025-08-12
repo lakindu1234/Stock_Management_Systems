@@ -463,3 +463,6 @@ class BillingSystem:
         selected = self.cart_tree.selection()
         if not selected:   
           return
+          
+        item = self.cart_tree.item(selected[0])['values'][0]
+        del self.inventory.current_transaction[item]

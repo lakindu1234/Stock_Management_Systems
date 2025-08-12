@@ -455,4 +455,11 @@ class BillingSystem:
           self.inventory.current_transaction[item_name] += qty
         else:
           self.inventory.current_transaction[item_name] = qty
-  
+          
+        self.update_cart_display()
+        self.quantity_entry.delete(0, tk.END)
+
+    def remove_from_cart(self):
+        selected = self.cart_tree.selection()
+        if not selected:   
+          return

@@ -475,3 +475,8 @@ class BillingSystem:
         total = 0.0
         c.execute("SELECT name, price FROM items")
         prices = {row[0]: row[1] for row in c.fetchall()}
+
+        for item, qty in self.inventory.current_transaction.items():
+            price = prices[item]
+            subtotal = price * qty
+            total += subtotal

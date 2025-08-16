@@ -467,3 +467,7 @@ class BillingSystem:
         item = self.cart_tree.item(selected[0])['values'][0]
         del self.inventory.current_transaction[item]
         self.update_cart_display()
+      
+    def update_cart_display(self):
+        for item in self.cart_tree.get_children():
+            self.cart_tree.delete(item)

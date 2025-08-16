@@ -471,3 +471,7 @@ class BillingSystem:
     def update_cart_display(self):
         for item in self.cart_tree.get_children():
             self.cart_tree.delete(item)
+
+        total = 0.0
+        c.execute("SELECT name, price FROM items")
+        prices = {row[0]: row[1] for row in c.fetchall()}

@@ -480,3 +480,5 @@ class BillingSystem:
             price = prices[item]
             subtotal = price * qty
             total += subtotal
+            self.cart_tree.insert("", tk.END,
+                                values=(item, f"${price:.2f}", qty, f"${subtotal:.2f}"))

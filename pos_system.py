@@ -482,3 +482,4 @@ class BillingSystem:
             total += subtotal
             self.cart_tree.insert("", tk.END,
                                 values=(item, f"${price:.2f}", qty, f"${subtotal:.2f}"))
+        self.total_label.config(text=f"${total:.2f}")

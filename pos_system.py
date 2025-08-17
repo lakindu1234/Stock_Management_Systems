@@ -490,3 +490,9 @@ class BillingSystem:
             return
 
         total = float(self.total_label.cget("text")[1:])
+
+        try:
+            if self.inventory.process_transaction(self.inventory.current_transaction, total):
+                self.update_inventory_list()
+                self.update_transactions()
+                self.update_daily_sales()

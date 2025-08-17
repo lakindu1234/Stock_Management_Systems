@@ -496,3 +496,6 @@ class BillingSystem:
                 self.update_inventory_list()
                 self.update_transactions()
                 self.update_daily_sales()
+                self.inventory.current_transaction.clear()
+                self.update_cart_display()
+                messagebox.showinfo("Success", "Payment processed successfully!")

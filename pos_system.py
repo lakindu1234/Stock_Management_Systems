@@ -499,3 +499,6 @@ class BillingSystem:
                 self.inventory.current_transaction.clear()
                 self.update_cart_display()
                 messagebox.showinfo("Success", "Payment processed successfully!")
+              
+        except Exception as e:
+            messagebox.showerror("Error", f"Transaction failed: {str(e)}")

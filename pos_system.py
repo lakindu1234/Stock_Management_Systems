@@ -483,3 +483,8 @@ class BillingSystem:
             self.cart_tree.insert("", tk.END,
                                 values=(item, f"${price:.2f}", qty, f"${subtotal:.2f}"))
         self.total_label.config(text=f"${total:.2f}")
+
+    def process_payment(self):
+        if not self.inventory.current_transaction:
+            messagebox.showerror("Error", "Cart is empty")
+            return

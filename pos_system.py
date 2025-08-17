@@ -488,3 +488,5 @@ class BillingSystem:
         if not self.inventory.current_transaction:
             messagebox.showerror("Error", "Cart is empty")
             return
+
+        total = float(self.total_label.cget("text")[1:])

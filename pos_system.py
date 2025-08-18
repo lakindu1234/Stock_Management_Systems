@@ -505,3 +505,5 @@ class BillingSystem:
 
       def on_close(self):
         today = datetime.now().date().isoformat()
+        c.execute("SELECT total_income FROM daily_sales WHERE date = ?", (today,))
+        total_income = c.fetchone()

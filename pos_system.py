@@ -502,3 +502,6 @@ class BillingSystem:
               
         except Exception as e:
             messagebox.showerror("Error", f"Transaction failed: {str(e)}")
+
+      def on_close(self):
+        today = datetime.now().date().isoformat()

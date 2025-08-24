@@ -507,3 +507,5 @@ class BillingSystem:
         today = datetime.now().date().isoformat()
         c.execute("SELECT total_income FROM daily_sales WHERE date = ?", (today,))
         total_income = c.fetchone()
+        total_income = total_income[0] if total_income else 0.0
+       

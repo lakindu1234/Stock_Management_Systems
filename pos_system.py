@@ -511,3 +511,6 @@ class BillingSystem:
         messagebox.showinfo("Daily Summary", f"Total Income for {today}: RS.{total_income:.2f}")
         self.root.destroy()
         conn.close()
+
+if __name__ == "__main__":
+    root = tk.Tk()

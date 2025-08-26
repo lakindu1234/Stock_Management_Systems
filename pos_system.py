@@ -45,8 +45,8 @@ c.execute('''CREATE TABLE IF NOT EXISTS daily_sales (
 conn.commit()
 
 
-class InventorySystem:
 
+class InventorySystem:
     def __init__(self):
         self.current_transaction = {}
 
@@ -54,6 +54,7 @@ class InventorySystem:
     def get_items():
         c.execute("SELECT id, name, price, stock FROM items")
         return c.fetchall()
+
 
     @staticmethod
     def add_item(name, price, stock):
@@ -84,6 +85,9 @@ class InventorySystem:
             print(f"Error removing item: {e}")
             return False
 
+
+
+
     @staticmethod
     def process_transaction(items, total):
         try:
@@ -99,18 +103,18 @@ class InventorySystem:
                 if current_stock < qty:
                     raise ValueError(f"Insufficient stock for {item_name}")
 
+
             # Process stock changes
             for item_name, qty in items.items():
-
                 c.execute("SELECT id FROM items WHERE name=?", (item_name,))
                 item_id = c.fetchone()[0]
                 c.execute("UPDATE items SET stock = stock - ? WHERE id = ?", (qty, item_id))
                 c.execute("INSERT INTO stock_history (item_id, adjustment, timestamp) VALUES (?,?,?)",
-
                          (item_id, -qty, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 
 
-                        # Get next daily_id
+
+            # Get next daily_id
             c.execute("SELECT MAX(daily_id) FROM transactions WHERE date = ?", (today,))
             max_daily_id = c.fetchone()[0] or 0
             new_daily_id = max_daily_id + 1
@@ -134,6 +138,8 @@ class InventorySystem:
             conn.rollback()
             raise e
 
+
+
     @staticmethod
     def get_item_stock(item_id):
         c.execute("SELECT stock FROM items WHERE id=?", (item_id,))
@@ -142,13 +148,11 @@ class InventorySystem:
 
 
 class BillingSystem:
-
     def __init__(self, root):
         self.root = root
         self.inventory = InventorySystem()
         self.setup_ui()
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
-
 
     def setup_ui(self):
         self.root.title("Inventory & Billing System")
@@ -169,13 +173,13 @@ class BillingSystem:
         ttk.Button(self.login_frame, text="Login",
                   command=self.authenticate).grid(row=2, columnspan=2, pady=10)
 
+
     def authenticate(self):
         if self.username_entry.get() == "admin" and self.password_entry.get() == "admin123":
             self.login_frame.destroy()
             self.show_main_app()
         else:
             messagebox.showerror("Error", "Invalid credentials")
-
 
     def show_main_app(self):
         main_frame = ttk.Frame(self.root)
@@ -206,6 +210,7 @@ class BillingSystem:
         notebook.pack(fill=tk.BOTH, expand=True)
 
 
+
     def setup_inventory_tab(self, parent):
         control_frame = ttk.Frame(parent)
         control_frame.pack(pady=10)
@@ -226,6 +231,8 @@ class BillingSystem:
             self.inventory_tree.column(col, width=100)
         self.inventory_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         self.update_inventory_list()
+
+
 
 
     def setup_billing_tab(self, parent):
@@ -258,6 +265,7 @@ class BillingSystem:
         self.cart_tree.pack(fill=tk.BOTH, expand=True)
 
 
+
         total_frame = ttk.Frame(right_frame)
         total_frame.pack(fill=tk.X, pady=10)
 
@@ -273,6 +281,8 @@ class BillingSystem:
         ttk.Button(btn_frame, text="Process Payment",
                   command=self.process_payment).pack(side=tk.RIGHT, padx=5)
 
+
+
     def setup_transactions_tab(self, parent):
         columns = ("Daily ID", "Date", "Items", "Total", "Timestamp")
         self.trans_tree = ttk.Treeview(parent, columns=columns, show="headings")
@@ -281,6 +291,8 @@ class BillingSystem:
             self.trans_tree.column(col, width=150)
         self.trans_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         self.update_transactions()
+
+
 
     def setup_daily_sales_tab(self, parent):
         columns = ("Date", "Total Income")
@@ -291,15 +303,21 @@ class BillingSystem:
         self.daily_tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         self.update_daily_sales()
 
+
+
     def update_item_combo(self):
         items = self.inventory.get_items()
         self.item_combo['values'] = [f"{item[0]} - {item[1]}" for item in items]
+
+
 
     def update_inventory_list(self):
         for item in self.inventory_tree.get_children():
             self.inventory_tree.delete(item)
         for item in self.inventory.get_items():
             self.inventory_tree.insert("", tk.END, values=item)
+
+
 
     def update_transactions(self):
         for item in self.trans_tree.get_children():
@@ -308,13 +326,14 @@ class BillingSystem:
         for trans in c.fetchall():
             self.trans_tree.insert("", tk.END, values=(trans[0], trans[1], trans[2], f"${trans[3]:.2f}", trans[4]))
 
+
+
     def update_daily_sales(self):
         for item in self.daily_tree.get_children():
             self.daily_tree.delete(item)
         c.execute("SELECT * FROM daily_sales ORDER BY date DESC")
         for sale in c.fetchall():
             self.daily_tree.insert("", tk.END, values=(sale[0], f"RS.{sale[1]:.2f}"))
-
 
     def show_add_item_dialog(self):
         dialog = tk.Toplevel(self.root)
@@ -353,6 +372,7 @@ class BillingSystem:
                     dialog.destroy()
                     messagebox.showinfo("Success", "Item added successfully!")
 
+
                 else:
                     messagebox.showerror("Error", "Item with this name already exists!")
             except ValueError:
@@ -361,13 +381,17 @@ class BillingSystem:
         ttk.Button(dialog, text="Save", command=save_item).grid(row=3, columnspan=2, pady=10)
 
 
+
     def show_update_stock_dialog(self):
         dialog = tk.Toplevel(self.root)
         dialog.title("Update Stock")
-        ttk.Label(dialog, text="Select Item:").grid(row=0, column=0, padx=5, pady=5)
 
+
+
+        ttk.Label(dialog, text="Select Item:").grid(row=0, column=0, padx=5, pady=5)
         item_combo = ttk.Combobox(dialog)
         item_combo.grid(row=0, column=1, padx=5, pady=5)
+
 
         items = self.inventory.get_items()
         item_combo['values'] = [f"{item[0]} - {item[1]}" for item in items]
@@ -375,6 +399,7 @@ class BillingSystem:
         ttk.Label(dialog, text="Quantity to Add:").grid(row=1, column=0, padx=5, pady=5)
         qty_entry = ttk.Entry(dialog)
         qty_entry.grid(row=1, column=1, padx=5, pady=5)
+
 
 
         def update_stock():
@@ -387,6 +412,8 @@ class BillingSystem:
                 if qty <= 0:
                     raise ValueError("Quantity must be positive")
 
+
+
                 self.inventory.update_stock(item_id, qty)
                 self.update_inventory_list()
                 dialog.destroy()
@@ -394,7 +421,8 @@ class BillingSystem:
             except ValueError as e:
                 messagebox.showerror("Error", str(e))
 
-        ttk.Bu8tton(dialog, text="Update", command=update_stock).grid(row=2, columnspan=2, pady=10)
+        ttk.Button(dialog, text="Update", command=update_stock).grid(row=2, columnspan=2, pady=10)
+
 
 
     def show_remove_item_dialog(self):
@@ -403,10 +431,14 @@ class BillingSystem:
 
         ttk.Label(dialog, text="Select Item to Remove:").grid(row=0, column=0, padx=5, pady=5)
 
+
+
         item_combo = ttk.Combobox(dialog)
         item_combo.grid(row=0, column=1, padx=5, pady=5)
         items = self.inventory.get_items()
         item_combo['values'] = [f"{item[0]} - {item[1]}" for item in items]
+
+
 
 
         def remove_item():
@@ -416,16 +448,16 @@ class BillingSystem:
                     raise ValueError("No item selected")
                 item_id = int(selected.split(" - ")[0])
 
+
+
+
                 if self.inventory.remove_item(item_id):
                     self.update_inventory_list()
                     self.update_item_combo()
                     dialog.destroy()
-
                     messagebox.showinfo("Success", "Item removed successfully!")
-
                 else:
                     messagebox.showerror("Error", "Failed to remove item")
-
             except ValueError as e:
                 messagebox.showerror("Error", str(e))
 
@@ -442,7 +474,7 @@ class BillingSystem:
             qty = int(self.quantity_entry.get())
             if qty <= 0:
                 raise ValueError
-            except ValueError:
+        except ValueError:
             messagebox.showerror("Error", "Invalid quantity")
             return
 
@@ -450,24 +482,26 @@ class BillingSystem:
         if qty > stock:
             messagebox.showerror("Error", "Insufficient stock")
             return
+
         item_name = selected.split(" - ")[1]
         if item_name in self.inventory.current_transaction:
-          self.inventory.current_transaction[item_name] += qty
+            self.inventory.current_transaction[item_name] += qty
         else:
-          self.inventory.current_transaction[item_name] = qty
-          
+            self.inventory.current_transaction[item_name] = qty
+
         self.update_cart_display()
         self.quantity_entry.delete(0, tk.END)
 
     def remove_from_cart(self):
         selected = self.cart_tree.selection()
-        if not selected:   
-          return
-          
+        if not selected:
+            return
+
         item = self.cart_tree.item(selected[0])['values'][0]
         del self.inventory.current_transaction[item]
         self.update_cart_display()
-      
+
+
     def update_cart_display(self):
         for item in self.cart_tree.get_children():
             self.cart_tree.delete(item)
@@ -482,6 +516,7 @@ class BillingSystem:
             total += subtotal
             self.cart_tree.insert("", tk.END,
                                 values=(item, f"${price:.2f}", qty, f"${subtotal:.2f}"))
+
         self.total_label.config(text=f"${total:.2f}")
 
     def process_payment(self):
@@ -496,14 +531,15 @@ class BillingSystem:
                 self.update_inventory_list()
                 self.update_transactions()
                 self.update_daily_sales()
+
                 self.inventory.current_transaction.clear()
                 self.update_cart_display()
                 messagebox.showinfo("Success", "Payment processed successfully!")
-              
+
         except Exception as e:
             messagebox.showerror("Error", f"Transaction failed: {str(e)}")
 
-      def on_close(self):
+    def on_close(self):
         today = datetime.now().date().isoformat()
         c.execute("SELECT total_income FROM daily_sales WHERE date = ?", (today,))
         total_income = c.fetchone()
@@ -516,4 +552,3 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = BillingSystem(root)
     root.mainloop()
-

@@ -1,4 +1,4 @@
-##Stock Management Systems
+# Stock Management Systems
 
 Language Used - Python 
 GUI -  TKINTER Python module 
@@ -12,7 +12,7 @@ This is a system that was prepared by Python and SQL. This is made for any kind 
 ------------------------------------------------------------------------------------------------
 Enter the password and Use the Stock Management Systems for logging part. 
 
-## How to Uses the POS 
+## How to Uses the Stock Management Systems
 
 1)Enter the Username and Password 
 2) Add Items according to the Enevironment 

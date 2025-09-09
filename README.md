@@ -51,7 +51,7 @@ Daily Sales
 
 ------------------------------------------------------------------------------------------------
 
-Adign Item 
+Adding Items
 
 <img width="1265" height="1079" alt="image" src="https://github.com/user-attachments/assets/ecc14ee1-ec86-4562-aadf-12dc51e54ca7" />
 

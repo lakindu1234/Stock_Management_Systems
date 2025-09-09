@@ -34,3 +34,10 @@ Enter the password and Use the Stock Management Systems for logging part.
 Logging Page
 
 <img width="1918" height="541" alt="image" src="https://github.com/user-attachments/assets/641f598e-7a06-4a56-9e24-dc3d5848113f" />
+
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/27be42d7-f1f6-43bd-8ef5-bad67bd71489" />
+
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/41a58ed8-d943-4494-905e-6288f00ed5a9" />
+

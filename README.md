@@ -36,8 +36,24 @@ Logging Page
 <img width="1918" height="541" alt="image" src="https://github.com/user-attachments/assets/641f598e-7a06-4a56-9e24-dc3d5848113f" />
 
 
+------------------------------------------------------------------------------------------------
+
+Billing System 
+
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/27be42d7-f1f6-43bd-8ef5-bad67bd71489" />
 
 
+------------------------------------------------------------------------------------------------
+
+Daily Sales
+
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/41a58ed8-d943-4494-905e-6288f00ed5a9" />
 
+------------------------------------------------------------------------------------------------
+
+Adign Item 
+
+<img width="1265" height="1079" alt="image" src="https://github.com/user-attachments/assets/ecc14ee1-ec86-4562-aadf-12dc51e54ca7" />
+
+
+------------------------------------------------------------------------------------------------

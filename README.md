@@ -58,6 +58,6 @@ Adding Items
 
 ------------------------------------------------------------------------------------------------
 
-This are the photos of GUI .. Stock managemet system and it work for all environment 
+This are the photos of GUI .. Stock managemet system and it work for all environment .
 
 
